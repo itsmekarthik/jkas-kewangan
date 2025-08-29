@@ -33,11 +33,28 @@ async function connectDB() {
         console.log('Connected to SQL Server database: JKAS (Financial Dashboard)');
     } catch (err) {
         console.error('Database connection failed:', err);
+        // Don't crash the app if database connection fails
+        console.log('Application will continue to run without database connection');
     }
 }
 
 // Initialize database connection
 connectDB();
+
+// Health check endpoint
+app.get('/api/health', (req, res) => {
+    res.json({
+        status: 'OK',
+        timestamp: new Date().toISOString(),
+        server: 'Financial Dashboard',
+        port: port
+    });
+});
+
+// Serve the main page
+app.get('/', (req, res) => {
+    res.sendFile(path.join(__dirname, 'financial_dashboard_test.html'));
+});
 
 // API endpoint to get financial data for dashboard
 app.get('/api/financial_data', async (req, res) => {
@@ -595,7 +612,7 @@ app.get('/api/debug/connection', async (req, res) => {
 // Start server
 app.listen(port, () => {
     console.log(`Financial Dashboard server running at http://localhost:${port}`);
-    console.log(`Open http://localhost:${port}/financial_data.html to view the dashboard`);
+    console.log(`Open http://localhost:${port}/financial_dashboard_test.html to view the dashboard`);
 });
 
 // Handle graceful shutdown

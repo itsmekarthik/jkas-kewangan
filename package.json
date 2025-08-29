@@ -1,8 +1,10 @@
 {
   "name": "financial-dashboard",
   "version": "1.0.0",
+  "main": "financial_data_server.js",
   "scripts": {
-    "start": "node financial_data_server.js"
+    "start": "node financial_data_server.js",
+    "dev": "node financial_data_server.js"
   },
   "dependencies": {
     "cors": "^2.8.5",
