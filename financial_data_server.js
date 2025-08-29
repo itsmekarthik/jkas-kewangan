@@ -4,7 +4,7 @@ const cors = require('cors');
 const path = require('path');
 
 const app = express();
-const port = 3002; // Different port from your kewangan server
+const port = process.env.PORT || 3002;
 
 // Enable CORS for all routes
 app.use(cors());
