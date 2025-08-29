@@ -1,8 +1,8 @@
 // Financial Dashboard Application
 // This application provides analytics and visualization for financial data
 
-// API base URL
-const API_BASE_URL = 'http://localhost:3002/api';
+// API base URL - use relative path for production
+const API_BASE_URL = window.location.hostname === 'localhost' ? 'http://localhost:3002/api' : '/api';
 
 // Global variables
 let financialData = [];
